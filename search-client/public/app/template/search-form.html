@@ -1,0 +1,26 @@
+<h1 class="text-center">Full Text Search</h1>
+<div class="form-row">
+  <div class="form-group col-md-12">
+    <div class="input-group">
+      <div class="input-group-prepend">
+        <div id="queryHelp" class="input-group-text">?</div>
+      </div>
+      <input id="queryText" placeholder="Type your search" class="input-lg form-control" type="text">
+    </div>
+  </div>
+</div>
+<div class="form-row">
+  <div class="form-group col-md-6">
+    <select id="queryLang" class="form-control">
+      <option disabled="disabled" selected="selected" value="">Language</option>
+      <option value="">Auto detect</option>
+      <% _.each(languages, function(match) { %>
+      <option value="<%= match.iso %>"><%= match.name %></option>
+      <% }); %>
+    </select>
+  </div>
+  <div class="form-group col-md-6">
+    <button type="button" id="queryAction" class="btn btn-primary btn-block">
+      <span class="glyphicon glyphicon-search"></span>&nbsp;Search</button>
+  </div>
+</div>

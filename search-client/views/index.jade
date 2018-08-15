@@ -1,0 +1,37 @@
+html
+  head
+    title Search
+    meta(charset='utf-8')
+
+    // CSS
+    link(href='./static/lib/bootstrap/css/bootstrap.min.css', rel='stylesheet')
+    link(href='./static/lib/jqcloud/jqcloud-min.css', rel='stylesheet')
+
+  body
+    div.container.p-3
+
+      // Modal messages
+      div.modal.fade(id='messages', role='dialog')
+        div.modal-dialog
+          div.modal-content
+            div.modal-header
+              h4.modal-title Warning
+              button.close(type='button', data-dismiss='modal', aria-label='Close')
+                span(aria-hidden='true')
+                 |&times;
+            div.modal-body
+              p
+              |&nbsp;
+
+      // Search form
+      div.jumbotron.shadow(id='query')
+
+      // Search results
+      div.well.container-fluid.invisible(id='result')
+        ul.list-group(id='entries')
+        button.btn.btn-success.btn-lg.btn-block(id='moreResults')
+          |More results
+
+
+  // JavaScript
+  script(type='text/javascript', data-main="/static/main.js", src='./static/lib/requirejs/requirejs-min.js')

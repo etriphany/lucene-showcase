@@ -1,0 +1,20 @@
+ <div class="card-header">
+  <% if (data.get('first')) { %>
+    <div class="card-header">
+      <h3 id="result-count"> Results = <%= data.get('total') %> </h3>
+    </div>
+  <% } %>
+    <ul class="list-group list-group-flush">
+      <% _.each(data.get('matches'), function(match) { %>
+      <li class="list-group-item list-group-item-action flex-column align-items-start">
+        <div class="d-flex w-100 m-2 justify-content-between">
+          <a target='_blank' href='/download<%= match.get('path') %>'><%= match.get('path') %></a>
+          <span class="badge badge-success badge-pill"><%= match.get('language').toUpperCase() %></span>
+        </div>
+        <div class="w-100 m-2">
+          <button class="btn btn-primary terms-finder" data-path="<%= match.get('path') %>">Frequent Terms</button>
+        </div>
+      </li>
+      <% }); %>
+    </ul>
+</div>
