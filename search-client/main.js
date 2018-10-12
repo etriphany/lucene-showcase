@@ -29,13 +29,13 @@ app.post('/terms', (req, res) => {
 });
 
 app.get('/download/:path', (req, res) =>{
-	var path = req.params.path;
-	res.download(path, (err) => {
-		if(err) {
-			res.writeHead(404);
-			res.end();
-		}
-	});
+  var path = req.params.path;
+  res.download(path, (err) => {
+    if(err) {
+      res.writeHead(404);
+      res.end();
+    }
+  });
 });
 
 // Special exception handler
