@@ -1,14 +1,17 @@
 {
   "name": "lucene-showcase-client",
   "version": "1.0.0",
-  "description": "Full Text Search REST client.",
+  "description": "Lucene Show Case Client.",
   "main": "server-main.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node main.js",
+    "dev": "nodemon main.js",
+    "prod": "pm2 start main.js"
   },
   "keywords": [
     "full-text search",
-    "rest"
+    "Lucene",
+    "REST"
   ],
   "author": "Cadu Goncalves",
   "license": "ISC",
@@ -17,5 +20,8 @@
     "express": "~4.16.3",
     "jade": "~1.11.0",
     "request": "~2.64.0"
+  },
+  "devDependencies": {
+    "nodemon": "~1.18.4"
   }
 }

@@ -1,0 +1,16 @@
+{
+  "apps": [{
+    "name": "Lucene Show Case Client",
+    "script": "main.js",
+    "watch": true,
+    "ignore_watch": [
+      ".git",
+      "node_modules/**/node_modules"
+    ],
+    "env": {
+        "NODE_ENV": "production",
+        "PORT": 3030,
+        "FULL_TEXT_SERVICE_URI": "http://localhost:9090"
+    }
+  }]
+}
