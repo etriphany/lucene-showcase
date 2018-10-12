@@ -1,0 +1,377 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <!-- Project -->
+    <groupId>br.com.etriphany</groupId>
+    <artifactId>fts-boot</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <packaging>jar</packaging>
+
+    <!-- Spring Boot BOM -->
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.0.4.RELEASE</version>
+        <relativePath/>
+    </parent>
+
+    <properties>
+        <framework.spring-mvc.version>5.0.6.RELEASE</framework.spring-mvc.version>
+        <framework.lucene.version>7.4.0</framework.lucene.version>
+        <framework.tika.version>1.18</framework.tika.version>
+        <framework.jackson.version>2.9.4</framework.jackson.version>
+        <framework.hikaricp.version>3.2.0</framework.hikaricp.version>
+        <framework.hsqldb.version>2.3.3</framework.hsqldb.version>
+        <framework.commons-lang.version>3.7</framework.commons-lang.version>
+
+        <plugin.maven-compiler.version>3.3</plugin.maven-compiler.version>
+    </properties>
+
+    <build>
+
+        <plugins>
+
+            <!-- Compiler -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>${plugin.maven-compiler.version}</version>
+                <configuration>
+                    <source>1.9</source>
+                    <target>1.9</target>
+                </configuration>
+            </plugin>
+
+            <!-- Spring Boot -->
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>repackage</goal>
+                        </goals>
+                        <configuration>
+                            <classifier>exec</classifier>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+        </plugins>
+
+    </build>
+
+    <dependencies>
+
+        <!-- Spring Boot -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter</artifactId>
+            <exclusions>
+                <!-- No logging stuff -->
+                <exclusion>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-starter-logging</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+        <!-- Spring Boot Log4J-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-log4j2</artifactId>
+        </dependency>
+
+        <!-- Spring Boot JDBC -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-jdbc</artifactId>
+            <exclusions>
+                <!-- No Tomcat stuff -->
+                <exclusion>
+                    <groupId>org.apache.tomcat</groupId>
+                    <artifactId>tomcat-jdbc</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+        <!-- Spring Boot Undertow -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-undertow</artifactId>
+        </dependency>
+
+        <!-- Spring MVC -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-webmvc</artifactId>
+            <version>${framework.spring-mvc.version}</version>
+        </dependency>
+
+        <!-- Apache Commons Lang -->
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>${framework.commons-lang.version}</version>
+        </dependency>
+
+        <!-- Jackson -->
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>${framework.jackson.version}</version>
+        </dependency>
+
+        <!-- HikariCP (connection pool) -->
+        <dependency>
+            <groupId>com.zaxxer</groupId>
+            <artifactId>HikariCP</artifactId>
+            <version>${framework.hikaricp.version}</version>
+        </dependency>
+
+        <!-- HyperSQL (embedded database) -->
+        <dependency>
+            <groupId>org.hsqldb</groupId>
+            <artifactId>hsqldb</artifactId>
+            <version>${framework.hsqldb.version}</version>
+        </dependency>
+
+        <!-- Lucene Core -->
+        <dependency>
+            <groupId>org.apache.lucene</groupId>
+            <artifactId>lucene-core</artifactId>
+            <version>${framework.lucene.version}</version>
+        </dependency>
+
+        <!-- Lucene Analyzers -->
+        <dependency>
+            <groupId>org.apache.lucene</groupId>
+            <artifactId>lucene-analyzers-common</artifactId>
+            <version>${framework.lucene.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.lucene</groupId>
+            <artifactId>lucene-analyzers-kuromoji</artifactId>
+            <version>${framework.lucene.version}</version>
+        </dependency>
+
+        <!-- Lucene Indexing / Searching -->
+        <dependency>
+            <groupId>org.apache.lucene</groupId>
+            <artifactId>lucene-codecs</artifactId>
+            <version>${framework.lucene.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.lucene</groupId>
+            <artifactId>lucene-queryparser</artifactId>
+            <version>${framework.lucene.version}</version>
+        </dependency>
+
+        <!-- Tika Core -->
+        <dependency>
+            <groupId>org.apache.tika</groupId>
+            <artifactId>tika-core</artifactId>
+            <version>${framework.tika.version}</version>
+        </dependency>
+
+        <!-- Tika Parsers -->
+        <dependency>
+            <groupId>org.apache.tika</groupId>
+            <artifactId>tika-parsers</artifactId>
+            <version>${framework.tika.version}</version>
+
+            <!--
+                Excluded some dependencies related with content formats
+                not so useful to demonstrate fulltext search key concepts
+                (comment to enable and use)
+            -->
+            <exclusions>
+                <!-- Ogg support -->
+                <exclusion>
+                    <groupId>org.gagravarr</groupId>
+                    <artifactId>*</artifactId>
+                </exclusion>
+
+                <!-- MS Access support -->
+                <exclusion>
+                    <groupId>com.healthmarketscience.jackcess</groupId>
+                    <artifactId>*</artifactId>
+                </exclusion>
+
+                <!-- Matlab file support -->
+                <exclusion>
+                    <groupId>org.tallison</groupId>
+                    <artifactId>*</artifactId>
+                </exclusion>
+
+                <!-- Bouncy Castle support -->
+                <exclusion>
+                    <groupId>org.bouncycastle</groupId>
+                    <artifactId>*</artifactId>
+                </exclusion>
+
+                <!-- MP4 support -->
+                <exclusion>
+                    <groupId>com.googlecode.mp4parser</groupId>
+                    <artifactId>*</artifactId>
+                </exclusion>
+
+                <!-- Spatial Data (NetCDF and GRIB) support-->
+                <exclusion>
+                    <groupId>edu.ucar</groupId>
+                    <artifactId>*</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.apache.sis.core</groupId>
+                    <artifactId>*</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.apache.sis.storage</groupId>
+                    <artifactId>*</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.opengis</groupId>
+                    <artifactId>*</artifactId>
+                </exclusion>
+
+                <!-- Image metadata -->
+                <exclusion>
+                    <groupId>com.drewnoakes</groupId>
+                    <artifactId>metadata-extractor</artifactId>
+                </exclusion>
+
+                <!-- Atom RSS -->
+                <exclusion>
+                    <groupId>com.rometools</groupId>
+                    <artifactId>rome</artifactId>
+                </exclusion>
+
+                <!-- PST -->
+                <exclusion>
+                    <groupId>com.pff</groupId>
+                    <artifactId>java-libpst</artifactId>
+                </exclusion>
+
+                <!-- Compressed formats  -->
+                <exclusion>
+                    <groupId>org.apache.commons</groupId>
+                    <artifactId>commons-compress</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.tukaani</groupId>
+                    <artifactId>xz</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.brotli</groupId>
+                    <artifactId>dec</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>com.github.junrar</groupId>
+                    <artifactId>junrar</artifactId>
+                </exclusion>
+
+                <!-- JSON -->
+                <exclusion>
+                    <groupId>com.googlecode.json-simple</groupId>
+                    <artifactId>*</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>com.github.openjson</groupId>
+                    <artifactId>*</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>com.google.code.gson</groupId>
+                    <artifactId>*</artifactId>
+                </exclusion>
+
+                <!-- PLN -->
+                <exclusion>
+                    <groupId>org.apache.uima</groupId>
+                    <artifactId>*</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.apache.opennlp</groupId>
+                    <artifactId>*</artifactId>
+                </exclusion>
+
+                <!-- Sentient Analysis-->
+                <exclusion>
+                    <groupId>edu.usc.ir</groupId>
+                    <artifactId>sentiment-analysis-parser</artifactId>
+                </exclusion>
+
+                <!-- HTTP -->
+                <exclusion>
+                    <groupId>org.apache.httpcomponents</groupId>
+                    <artifactId>*</artifactId>
+                </exclusion>
+
+                <!-- Apache James (Email attachments) -->
+                <exclusion>
+                    <groupId>org.apache.james</groupId>
+                    <artifactId>*</artifactId>
+                </exclusion>
+
+                <!-- Apache CFX (Remote API access) -->
+                <exclusion>
+                    <groupId>org.apache.cxf</groupId>
+                    <artifactId>*</artifactId>
+                </exclusion>
+
+                <!-- Avoid conflicts with Language Detector version -->
+                <exclusion>
+                    <groupId>com.google.guava</groupId>
+                    <artifactId>guava</artifactId>
+                </exclusion>
+
+                <!-- Avoid conflicts with Spring Boot version -->
+                <exclusion>
+                    <groupId>org.aspectj</groupId>
+                    <artifactId>aspectjrt</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+        <!-- Tika Serialization -->
+        <dependency>
+            <groupId>org.apache.tika</groupId>
+            <artifactId>tika-serialization</artifactId>
+            <version>${framework.tika.version}</version>
+        </dependency>
+
+        <!--
+            Language Detector:
+
+            Better built in language profiles compared to Tika (70 vs 28)
+            (http://pt.slideshare.net/shuyo/language-detection-library-for-java)
+        -->
+        <dependency>
+            <groupId>com.optimaize.languagedetector</groupId>
+            <artifactId>language-detector</artifactId>
+            <version>0.5</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>com.intellij</groupId>
+                    <artifactId>annotations</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.slf4j</groupId>
+                    <artifactId>slf4j-api</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+        <!-- Testing -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+    </dependencies>
+
+</project>

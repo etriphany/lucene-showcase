@@ -1,3 +1,9 @@
 # Nodejs target content
 node_modules
 package-lock.json
+
+# Java target content
+.idea
+*.iml
+target
+data
