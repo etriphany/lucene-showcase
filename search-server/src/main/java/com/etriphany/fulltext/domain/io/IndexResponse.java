@@ -1,5 +1,8 @@
 package com.etriphany.fulltext.domain.io;
 
+import lombok.AllArgsConstructor;
+import lombok.Value;
+
 import java.io.Serializable;
 
 /**
@@ -8,6 +11,8 @@ import java.io.Serializable;
  * @author cadu.goncalves
  *
  */
+@Value
+@AllArgsConstructor
 public class IndexResponse implements Serializable {
 
     // Succeed or not
@@ -15,18 +20,5 @@ public class IndexResponse implements Serializable {
 
     // Result message
     private final String message;
-
-    public IndexResponse(Boolean success, String message) {
-        this.success = success;
-        this.message = message;
-    }
-
-    public Boolean getSuccess() {
-        return success;
-    }
-
-    public String getMessage() {
-        return message;
-    }
 
 }

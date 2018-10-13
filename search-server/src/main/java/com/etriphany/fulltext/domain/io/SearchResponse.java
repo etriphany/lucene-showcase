@@ -3,6 +3,8 @@ package com.etriphany.fulltext.domain.io;
 import com.etriphany.fulltext.domain.embed.Content;
 import com.etriphany.fulltext.domain.util.ContentSerializer;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import lombok.AllArgsConstructor;
+import lombok.Value;
 
 import java.io.Serializable;
 import java.util.List;
@@ -13,9 +15,12 @@ import java.util.List;
  * @author cadu.goncalves
  *
  */
+@Value
+@AllArgsConstructor
 public class SearchResponse implements Serializable {
 
     // Matches
+    @JsonSerialize(contentUsing=ContentSerializer.class)
     private final List<Content> matches;
 
     // Total of results to request more pages
@@ -24,22 +29,4 @@ public class SearchResponse implements Serializable {
     // Register the paging status to navigate over more pages.
     private final String deep;
 
-    public SearchResponse(List<Content> matches, Integer total, String deep) {
-        this.matches = matches;
-        this.total = total;
-        this.deep = deep;
-    }
-
-    @JsonSerialize(contentUsing=ContentSerializer.class)
-    public List<Content> getMatches() {
-        return matches;
-    }
-
-    public Integer getTotal() {
-        return total;
-    }
-
-    public String getDeep() {
-        return deep;
-    }
 }

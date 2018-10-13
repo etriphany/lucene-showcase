@@ -6,8 +6,8 @@
 
     <!-- Project -->
     <groupId>br.com.etriphany</groupId>
-    <artifactId>fts-boot</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <artifactId>lucene-showcase-server</artifactId>
+    <version>v1.0.0</version>
     <packaging>jar</packaging>
 
     <!-- Spring Boot BOM -->
@@ -26,8 +26,10 @@
         <framework.hikaricp.version>3.2.0</framework.hikaricp.version>
         <framework.hsqldb.version>2.3.3</framework.hsqldb.version>
         <framework.commons-lang.version>3.7</framework.commons-lang.version>
+        <framework.lombok.version>1.18.2</framework.lombok.version>
 
         <plugin.maven-compiler.version>3.3</plugin.maven-compiler.version>
+        <plugin.docker-maven-version>1.3.6</plugin.docker-maven-version>
     </properties>
 
     <build>
@@ -40,8 +42,8 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>${plugin.maven-compiler.version}</version>
                 <configuration>
-                    <source>1.9</source>
-                    <target>1.9</target>
+                    <source>1.10</source>
+                    <target>1.10</target>
                 </configuration>
             </plugin>
 
@@ -59,6 +61,20 @@
                         </configuration>
                     </execution>
                 </executions>
+            </plugin>
+
+            <!-- Docker -->
+            <plugin>
+                <groupId>com.spotify</groupId>
+                <artifactId>dockerfile-maven-plugin</artifactId>
+                <version>${plugin.docker-maven-version}</version>
+                <configuration>
+                    <repository>etriphany/${project.artifactId}</repository>
+                    <tag>${project.version}</tag>
+                    <buildArgs>
+                        <JAR_FILE>${project.build.finalName}.jar</JAR_FILE>
+                    </buildArgs>
+                </configuration>
             </plugin>
 
         </plugins>
@@ -131,6 +147,14 @@
             <groupId>com.zaxxer</groupId>
             <artifactId>HikariCP</artifactId>
             <version>${framework.hikaricp.version}</version>
+        </dependency>
+
+        <!-- Lombok -->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>${framework.lombok.version}</version>
+            <scope>provided</scope>
         </dependency>
 
         <!-- HyperSQL (embedded database) -->

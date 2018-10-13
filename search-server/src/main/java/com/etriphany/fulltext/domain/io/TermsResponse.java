@@ -1,5 +1,8 @@
 package com.etriphany.fulltext.domain.io;
 
+import lombok.AllArgsConstructor;
+import lombok.Value;
+
 import java.util.SortedSet;
 
 /**
@@ -8,16 +11,11 @@ import java.util.SortedSet;
  * @author cadu.goncalves
  *
  */
+@Value
+@AllArgsConstructor
 public class TermsResponse {
 
     // Matches
     private final SortedSet<ContentTerm> matches;
 
-    public TermsResponse(SortedSet<ContentTerm> matches) {
-        this.matches = matches;
-    }
-
-    public SortedSet<ContentTerm> getMatches() {
-        return matches;
-    }
 }

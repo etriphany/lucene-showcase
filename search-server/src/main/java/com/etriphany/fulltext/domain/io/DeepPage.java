@@ -1,11 +1,16 @@
 package com.etriphany.fulltext.domain.io;
 
+import lombok.AllArgsConstructor;
+import lombok.Value;
+
 /**
  * Provides deep pagination support.
  *
  * @author cadu.goncalves
  *
  */
+@Value
+@AllArgsConstructor
 public class DeepPage {
 
     // Parsing delimiter
@@ -16,30 +21,6 @@ public class DeepPage {
 
     // Marked score
     private final Float score;
-
-    /**
-     * Constructor.
-     *
-     * @param doc Marked document
-     * @param score Marked score
-     */
-    public DeepPage(Integer doc, Float score) {
-        this.doc = doc;
-        this.score = score;
-    }
-
-    public Integer getDoc() {
-        return doc;
-    }
-
-    public Float getScore() {
-        return score;
-    }
-
-    @Override
-    public String toString() {
-        return doc + DELIMITER + score;
-    }
 
     /**
      * Reconstruct instance from string representation.
